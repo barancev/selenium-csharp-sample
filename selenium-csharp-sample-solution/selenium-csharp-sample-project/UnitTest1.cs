@@ -22,7 +22,7 @@ namespace php4dvdtests
         [Test()]
         public void LoginTest()
         {
-            Login();
+            Login("admin", "admin");
             Logout();
         }
 
@@ -32,14 +32,14 @@ namespace php4dvdtests
             wd.SwitchTo().Alert().Accept();
         }
 
-        private void Login()
+        private void Login(string username, string password)
         {
             wd.FindElement(By.Id("username")).Click();
             wd.FindElement(By.Id("username")).Clear();
-            wd.FindElement(By.Id("username")).SendKeys("admin");
+            wd.FindElement(By.Id("username")).SendKeys(username);
             wd.FindElement(By.Name("password")).Click();
             wd.FindElement(By.Name("password")).Clear();
-            wd.FindElement(By.Name("password")).SendKeys("admin");
+            wd.FindElement(By.Name("password")).SendKeys(password);
             wd.FindElement(By.Name("submit")).Click();
         }
 

@@ -16,20 +16,17 @@ namespace php4dvdtests
         public void StartBrowser()
         {
             wd = new FirefoxDriver();
+            wd.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             wd.Navigate().GoToUrl("http://localhost/php4dvd/");
         }
 
         [Test()]
-        public void LoginTest()
+        public void LoginTestWithValidCredentials()
         {
             Login("admin", "admin");
+            Assert.IsTrue(IsLoggedIn(), "Logged in");
             Logout();
-        }
-
-        private void Logout()
-        {
-            wd.FindElement(By.LinkText("Log out")).Click();
-            wd.SwitchTo().Alert().Accept();
+            Assert.IsTrue(IsLoggedOut(), "Logged out"); // Sic! Don't do Assert.IsFalse(IsLoggedIn());
         }
 
         private void Login(string username, string password)
@@ -41,6 +38,27 @@ namespace php4dvdtests
             wd.FindElement(By.Name("password")).Clear();
             wd.FindElement(By.Name("password")).SendKeys(password);
             wd.FindElement(By.Name("submit")).Click();
+        }
+
+        private bool IsLoggedIn()
+        {
+            return IsElementPresent(By.LinkText("Log out"));
+        }
+
+        private bool IsLoggedOut()
+        {
+            return IsElementPresent(By.Id("username"));
+        }
+
+        private void Logout()
+        {
+            wd.FindElement(By.LinkText("Log out")).Click();
+            wd.SwitchTo().Alert().Accept();
+        }
+
+        private bool IsElementPresent(By by)
+        {
+            return wd.FindElements(by).Count > 0;
         }
 
         [TearDown]

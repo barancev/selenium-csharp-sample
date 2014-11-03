@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using NUnit.Framework;
@@ -15,19 +16,9 @@ namespace php4dvdtests
         [SetUp]
         public void StartBrowser()
         {
-            wd = new FirefoxDriver();
+            wd = WebDriverFactory.GetDriver(DesiredCapabilities.Firefox());
             wd.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             wd.Navigate().GoToUrl("http://localhost/php4dvd/");
-        }
-
-        [TearDown]
-        public void StopBrowser()
-        {
-            if (wd != null)
-            {
-                wd.Quit();
-                wd = null;
-            }
         }
 
         protected void Login(string username, string password)

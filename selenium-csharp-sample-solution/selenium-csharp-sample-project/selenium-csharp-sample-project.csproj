@@ -61,10 +61,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Finalizer.cs" />
     <Compile Include="LoginTestsNegative.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="LoginTestsPositive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebDriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

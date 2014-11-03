@@ -18,6 +18,8 @@ namespace php4dvdtests
 
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this);
+
+            Pages = new PageManager(Driver);
         }
 
         public IWebDriver Driver { get; set; }
@@ -27,5 +29,7 @@ namespace php4dvdtests
         public LoginHelper Auth { get; set; }
 
         public NavigationHelper Navigator { get; set; }
+
+        public PageManager Pages { get; set; }
     }
 }

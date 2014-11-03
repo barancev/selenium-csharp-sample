@@ -1,24 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="php4dvdtests.TestBase" Collapsed="true">
-    <Position X="3" Y="2.25" Width="1.5" />
+  <Class Name="php4dvdtests.TestBase">
+    <Position X="3" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAATAAAAgAE=</HashCode>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>TestBase.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="app" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="php4dvdtests.LoginTestsNegative" Collapsed="true">
-    <Position X="2" Y="4" Width="1.5" />
+    <Position X="2" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LoginTestsNegative.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="php4dvdtests.LoginTestsPositive" Collapsed="true">
-    <Position X="4" Y="4" Width="1.5" />
+    <Position X="4" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LoginTestsPositive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="php4dvdtests.ApplicationManager">
+    <Position X="6.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAACAAgAAAAAAAABAAAAA=</HashCode>
+      <FileName>impl\ApplicationManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Auth" />
+      <Property Name="Navigator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="php4dvdtests.LoginHelper">
+    <Position X="9" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABIEAAAAAAAAAAASAAAAgAE=</HashCode>
+      <FileName>impl\LoginHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="php4dvdtests.NavigationHelper" Collapsed="true">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>impl\NavigationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

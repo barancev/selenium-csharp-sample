@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Finalizer.cs" />
     <Compile Include="LoginTestsNegative.cs" />
+    <Compile Include="model\AccountData.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="LoginTestsPositive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

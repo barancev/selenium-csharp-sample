@@ -13,7 +13,12 @@ namespace php4dvdtests
         [Test()]
         public void LoginTestWithValidCredentials()
         {
-            Login("admin", "admin");
+            AccountData account = new AccountData()
+            {
+                Username = "admin",
+                Password = "admin"
+            };
+            Login(account);
             Assert.IsTrue(IsLoggedIn(), "Logged in");
             Logout();
             Assert.IsTrue(IsLoggedOut(), "Logged out"); // Sic! Don't do Assert.IsFalse(IsLoggedIn());

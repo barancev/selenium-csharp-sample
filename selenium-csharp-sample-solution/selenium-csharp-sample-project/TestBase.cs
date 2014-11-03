@@ -21,14 +21,14 @@ namespace php4dvdtests
             wd.Navigate().GoToUrl("http://localhost/php4dvd/");
         }
 
-        protected void Login(string username, string password)
+        protected void Login(AccountData account)
         {
             wd.FindElement(By.Id("username")).Click();
             wd.FindElement(By.Id("username")).Clear();
-            wd.FindElement(By.Id("username")).SendKeys(username);
+            wd.FindElement(By.Id("username")).SendKeys(account.Username);
             wd.FindElement(By.Name("password")).Click();
             wd.FindElement(By.Name("password")).Clear();
-            wd.FindElement(By.Name("password")).SendKeys(password);
+            wd.FindElement(By.Name("password")).SendKeys(account.Password);
             wd.FindElement(By.Name("submit")).Click();
         }
 

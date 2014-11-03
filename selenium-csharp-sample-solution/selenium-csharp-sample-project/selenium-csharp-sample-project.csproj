@@ -62,6 +62,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Finalizer.cs" />
+    <Compile Include="impl\ApplicationManager.cs" />
+    <Compile Include="impl\NavigationHelper.cs" />
+    <Compile Include="impl\LoginHelper.cs" />
     <Compile Include="LoginTestsNegative.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="TestBase.cs" />
@@ -73,6 +76,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

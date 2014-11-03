@@ -22,6 +22,18 @@ namespace php4dvdtests
         [Test()]
         public void LoginTest()
         {
+            Login();
+            Logout();
+        }
+
+        private void Logout()
+        {
+            wd.FindElement(By.LinkText("Log out")).Click();
+            wd.SwitchTo().Alert().Accept();
+        }
+
+        private void Login()
+        {
             wd.FindElement(By.Id("username")).Click();
             wd.FindElement(By.Id("username")).Clear();
             wd.FindElement(By.Id("username")).SendKeys("admin");
@@ -29,8 +41,6 @@ namespace php4dvdtests
             wd.FindElement(By.Name("password")).Clear();
             wd.FindElement(By.Name("password")).SendKeys("admin");
             wd.FindElement(By.Name("submit")).Click();
-            wd.FindElement(By.LinkText("Log out")).Click();
-            wd.SwitchTo().Alert().Accept();
         }
 
         [TearDown]

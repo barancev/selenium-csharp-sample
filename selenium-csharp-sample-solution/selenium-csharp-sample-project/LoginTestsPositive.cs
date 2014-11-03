@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
-using System;
+﻿using System;
 using NUnit.Framework;
 
 namespace php4dvdtests
@@ -18,10 +15,10 @@ namespace php4dvdtests
                 Username = "admin",
                 Password = "admin"
             };
-            Login(account);
-            Assert.IsTrue(IsLoggedIn(), "Logged in");
-            Logout();
-            Assert.IsTrue(IsLoggedOut(), "Logged out"); // Sic! Don't do Assert.IsFalse(IsLoggedIn());
+            app.Auth.Login(account);
+            Assert.IsTrue(app.Auth.IsLoggedIn(), "Logged in");
+            app.Auth.Logout();
+            Assert.IsTrue(app.Auth.IsLoggedOut(), "Logged out");
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 
 namespace php4dvdtests
@@ -12,6 +8,12 @@ namespace php4dvdtests
         public ApplicationManager(ICapabilities capabilities, string baseUrl, string hubUrl)
         {
             Driver = WebDriverFactory.GetDriver(hubUrl, capabilities);
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            if (!Driver.Url.StartsWith(baseUrl))
+            {
+                Driver.Navigate().GoToUrl(baseUrl);
+            }
+
             BaseURL = baseUrl;
 
             Auth = new LoginHelper(this);

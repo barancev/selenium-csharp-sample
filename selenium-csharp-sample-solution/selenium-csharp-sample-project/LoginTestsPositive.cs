@@ -8,7 +8,7 @@ namespace php4dvdtests
 {
 
     [TestFixture()]
-    public class Php4DvdTests
+    public class LoginTestsPositive
     {
         private IWebDriver wd;
 

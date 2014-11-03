@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 using NUnit.Framework;
+using Newtonsoft.Json;
 
 namespace php4dvdtests
 {
@@ -7,16 +10,16 @@ namespace php4dvdtests
     [TestFixture()]
     public class LoginTestsNegative : TestBase
     {
-        [Test()]
-        public void LoginTestWithInvalidCredentials()
+        [Test, TestCaseSource("InvalidCredentials")]
+        public void LoginTestWithInvalidCredentials(AccountData account)
         {
-            AccountData account = new AccountData()
-            {
-                Username = "admin",
-                Password = "nimda"
-            };
             app.Auth.Login(account);
             Assert.IsTrue(app.Auth.IsLoggedOut(), "Logged out");
+        }
+        public static IEnumerable<AccountData> InvalidCredentials()
+        {
+            return JsonConvert.DeserializeObject<List<AccountData>>(
+                File.ReadAllText(@"data\invalidCredentials.json"));
         }
     }
 }

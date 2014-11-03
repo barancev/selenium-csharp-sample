@@ -10,9 +10,9 @@ namespace php4dvdtests
 {
     public class PageManager
     {
-        private IWebDriver driver;
+        internal IWebDriver driver;
 
-        public PageManager(OpenQA.Selenium.IWebDriver Driver)
+        public PageManager(IWebDriver Driver)
         {
             this.driver = Driver;
             Login = InitElements(new LoginPage(this));

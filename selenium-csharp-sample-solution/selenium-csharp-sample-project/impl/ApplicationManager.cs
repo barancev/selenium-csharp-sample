@@ -16,10 +16,10 @@ namespace php4dvdtests
 
             BaseURL = baseUrl;
 
+            Pages = new PageManager(Driver);
+
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this);
-
-            Pages = new PageManager(Driver);
         }
 
         public IWebDriver Driver { get; set; }

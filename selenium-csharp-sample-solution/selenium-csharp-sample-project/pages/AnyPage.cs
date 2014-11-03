@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium;
 
 namespace php4dvdtests
 {
@@ -13,6 +10,10 @@ namespace php4dvdtests
         public AnyPage(PageManager pageManager)
         {
             this.pageManager = pageManager;
+        }
+        protected bool IsElementPresent(By by)
+        {
+            return pageManager.driver.FindElements(by).Count > 0;
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace php4dvdtests
 {
@@ -11,6 +9,20 @@ namespace php4dvdtests
         public LoginPage(PageManager pageManager)
             : base(pageManager)
         {
+        }
+
+        [FindsBy(How = How.Name, Using = "username")]
+        public IWebElement UsernameField;
+
+        [FindsBy(How = How.Name, Using = "password")]
+        public IWebElement PasswordField;
+
+        [FindsBy(How = How.Name, Using = "submit")]
+        public IWebElement SubmitButton;
+
+        public bool IsOnThisPage()
+        {
+            return IsElementPresent(By.Id("username"));
         }
     }
 }

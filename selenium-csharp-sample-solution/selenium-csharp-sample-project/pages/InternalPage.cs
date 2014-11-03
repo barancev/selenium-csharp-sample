@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace php4dvdtests
 {
@@ -11,6 +9,14 @@ namespace php4dvdtests
         public InternalPage(PageManager pageManager)
             : base(pageManager)
         {
+        }
+
+        [FindsBy(How = How.LinkText, Using = "Log out")]
+        public IWebElement LogoutLink;
+
+        public bool IsOnThisPage()
+        {
+            return IsElementPresent(By.LinkText("Log out"));
         }
     }
 }

@@ -1,49 +1,39 @@
 ﻿using System;
-using OpenQA.Selenium;
 
 namespace php4dvdtests
 {
     public class LoginHelper
     {
         private ApplicationManager manager;
-        private IWebDriver wd;
+        private PageManager pages;
 
         public LoginHelper(ApplicationManager manager)
         {
             this.manager = manager;
-            this.wd = manager.Driver;
+            this.pages = manager.Pages;
         }
 
         public void Login(AccountData account)
         {
-            wd.FindElement(By.Id("username")).Click();
-            wd.FindElement(By.Id("username")).Clear();
-            wd.FindElement(By.Id("username")).SendKeys(account.Username);
-            wd.FindElement(By.Name("password")).Click();
-            wd.FindElement(By.Name("password")).Clear();
-            wd.FindElement(By.Name("password")).SendKeys(account.Password);
-            wd.FindElement(By.Name("submit")).Click();
+            pages.Login.UsernameField.SendKeys(account.Username);
+            pages.Login.PasswordField.SendKeys(account.Password);
+            pages.Login.SubmitButton.Click();
         }
 
         public bool IsLoggedIn()
         {
-            return IsElementPresent(By.LinkText("Log out"));
+            return pages.Internal.IsOnThisPage();
         }
 
         public bool IsLoggedOut()
         {
-            return IsElementPresent(By.Id("username"));
+            return pages.Login.IsOnThisPage();
         }
 
         public void Logout()
         {
-            wd.FindElement(By.LinkText("Log out")).Click();
-            wd.SwitchTo().Alert().Accept();
-        }
-
-        protected bool IsElementPresent(By by)
-        {
-            return wd.FindElements(by).Count > 0;
+            pages.Internal.LogoutLink.Click();
+            pages.driver.SwitchTo().Alert().Accept();
         }
     }
 }

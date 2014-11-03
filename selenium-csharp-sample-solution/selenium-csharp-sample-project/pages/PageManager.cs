@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -11,10 +7,19 @@ namespace php4dvdtests
     public class PageManager
     {
         internal IWebDriver driver;
+        internal string baseUrl;
 
-        public PageManager(IWebDriver Driver)
+        public PageManager(ICapabilities capabilities, string baseUrl, string hubUrl)
         {
-            this.driver = Driver;
+            driver = WebDriverFactory.GetDriver(hubUrl, capabilities);
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            if (!driver.Url.StartsWith(baseUrl))
+            {
+                driver.Navigate().GoToUrl(baseUrl);
+            }
+
+            this.baseUrl = baseUrl;
+
             Login = InitElements(new LoginPage(this));
             Internal = InitElements(new InternalPage(this));
             UserProfile = InitElements(new UserProfilePage(this));
@@ -24,6 +29,11 @@ namespace php4dvdtests
         {
             PageFactory.InitElements(driver, page);
             return page;
+        }
+
+        public void AcceptApert()
+        {
+            driver.SwitchTo().Alert().Accept();
         }
 
         public InternalPage Internal { get; set; }

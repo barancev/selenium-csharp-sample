@@ -33,7 +33,7 @@ namespace php4dvdtests
         public void Logout()
         {
             pages.Internal.LogoutLink.Click();
-            pages.driver.SwitchTo().Alert().Accept();
+            pages.AcceptApert();
         }
     }
 }

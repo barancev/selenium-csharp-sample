@@ -1,0 +1,65 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using System;
+using NUnit.Framework;
+
+namespace php4dvdtests
+{
+
+    [TestFixture()]
+    public class TestBase
+    {
+        protected IWebDriver wd;
+
+        [SetUp]
+        public void StartBrowser()
+        {
+            wd = new FirefoxDriver();
+            wd.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            wd.Navigate().GoToUrl("http://localhost/php4dvd/");
+        }
+
+        [TearDown]
+        public void StopBrowser()
+        {
+            if (wd != null)
+            {
+                wd.Quit();
+                wd = null;
+            }
+        }
+
+        protected void Login(string username, string password)
+        {
+            wd.FindElement(By.Id("username")).Click();
+            wd.FindElement(By.Id("username")).Clear();
+            wd.FindElement(By.Id("username")).SendKeys(username);
+            wd.FindElement(By.Name("password")).Click();
+            wd.FindElement(By.Name("password")).Clear();
+            wd.FindElement(By.Name("password")).SendKeys(password);
+            wd.FindElement(By.Name("submit")).Click();
+        }
+
+        protected bool IsLoggedIn()
+        {
+            return IsElementPresent(By.LinkText("Log out"));
+        }
+
+        protected bool IsLoggedOut()
+        {
+            return IsElementPresent(By.Id("username"));
+        }
+
+        protected void Logout()
+        {
+            wd.FindElement(By.LinkText("Log out")).Click();
+            wd.SwitchTo().Alert().Accept();
+        }
+
+        protected bool IsElementPresent(By by)
+        {
+            return wd.FindElements(by).Count > 0;
+        }
+    }
+}

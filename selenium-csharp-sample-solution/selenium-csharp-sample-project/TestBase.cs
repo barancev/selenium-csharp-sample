@@ -13,7 +13,20 @@ namespace php4dvdtests
         [SetUp]
         public void StartApplication()
         {
-            app = new ApplicationManager(DesiredCapabilities.Firefox(), "http://localhost/php4dvd/", null);
+            string browserType = System.Environment.GetEnvironmentVariable("BROWSER");
+            string baseUrl = System.Environment.GetEnvironmentVariable("BASE_URL");
+            string hubUrl = System.Environment.GetEnvironmentVariable("HUB_URL");
+
+            if (baseUrl == null)
+            {
+                baseUrl = "http://localhost/php4dvd/";
+            }
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.SetCapability(CapabilityType.BrowserName,
+                browserType != null ? browserType : "firefox");
+
+            app = new ApplicationManager(capabilities, baseUrl, hubUrl);
         }
     }
 }
